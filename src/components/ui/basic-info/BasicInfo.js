@@ -1,16 +1,18 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { useForm } from "react-hook-form";
 
-const BasicInfo = ({ handleNext, values }) => {
+const BasicInfo = ({ handleNextStep, values }) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    handleNext(data);
+    handleNextStep(data);
   };
 
   return (
@@ -81,6 +83,8 @@ const BasicInfo = ({ handleNext, values }) => {
                 type="radio"
                 value="Male"
                 id="male"
+                onChange={(e) => setValue('gender',e.target.value)}
+                checked={values.gender === "Male"}
               />
               Male
             </label>
@@ -90,6 +94,8 @@ const BasicInfo = ({ handleNext, values }) => {
                 type="radio"
                 value="Female"
                 id="female"
+                onChange={(e) => setValue('gender',e.target.value)}
+                checked={values.gender === "Female"}
               />
               Female
             </label>
@@ -106,6 +112,11 @@ const BasicInfo = ({ handleNext, values }) => {
       </div>
     </div>
   );
+};
+
+BasicInfo.propTypes = {
+  handleNextStep: PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired,
 };
 
 export default BasicInfo;

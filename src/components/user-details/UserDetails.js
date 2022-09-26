@@ -4,8 +4,8 @@ import EducationInfo from "../ui/education/EducationInfo";
 import ExperienceInfo from "../ui/experience/ExperienceInfo";
 import Success from "../ui/success/Success";
 
-const UserDetails = () => {
-  const [count, setCount] = useState(1);
+const UserDetailsForm = () => {
+  const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -20,38 +20,32 @@ const UserDetails = () => {
     salary: "",
   });
 
-  const handleNext = (newData) => {
-    setCount(count + 1);
+  const handleNextStep = (newData) => {
+    setCurrentStep(currentStep + 1);
     setData({ ...data, ...newData });
   };
 
-  const handlePrev = () => {
-    setCount(count - 1);
+  const handlePrevStep = () => {
+    setCurrentStep(currentStep - 1);
   };
 
-  switch (count) {
+  switch (currentStep) {
     case 1:
-      return (
-        <BasicInfo
-          handleNext={handleNext}
-          values={data}
-          hasGender={data?.gender}
-        />
-      );
+      return <BasicInfo handleNextStep={handleNextStep} values={data} />;
     case 2:
       return (
         <EducationInfo
-          handlePrev={handlePrev}
-          handleNext={handleNext}
+          handlePrevStep={handlePrevStep}
+          handleNextStep={handleNextStep}
           values={data}
         />
       );
     case 3:
       return (
         <ExperienceInfo
-          handlePrev={handlePrev}
+          handlePrevStep={handlePrevStep}
           values={data}
-          handleNext={handleNext}
+          handleNextStep={handleNextStep}
         />
       );
     case 4:
@@ -61,4 +55,4 @@ const UserDetails = () => {
   }
 };
 
-export default UserDetails;
+export default UserDetailsForm;

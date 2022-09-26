@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import './success.css';
 
 const Success = ({ values }) => {
@@ -19,5 +20,9 @@ const Success = ({ values }) => {
     </div>
   );
 };
+
+Success.propTypes  = {
+  values: PropTypes.object.isRequired,
+}
 
 export default Success;

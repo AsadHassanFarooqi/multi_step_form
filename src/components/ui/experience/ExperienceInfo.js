@@ -1,8 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { useForm } from "react-hook-form";
 
-const ExperienceInfo = ({ handlePrev, handleNext, values }) => {
+const ExperienceInfo = ({ handlePrevStep, handleNextStep, values }) => {
   const {
     register,
     handleSubmit,
@@ -16,7 +17,7 @@ const ExperienceInfo = ({ handlePrev, handleNext, values }) => {
   } else {
     text = "You canceled!";
   }
-    handleNext(data);
+    handleNextStep(data);
   };
   return (
     <div className="container">
@@ -64,7 +65,7 @@ const ExperienceInfo = ({ handlePrev, handleNext, values }) => {
             {errors.salary && <p className="error">{errors.salary?.message}</p>}
           </div>
           <button
-            onClick={handlePrev}
+            onClick={handlePrevStep}
             type="button"
             className="previous-button"
           >
@@ -82,5 +83,11 @@ const ExperienceInfo = ({ handlePrev, handleNext, values }) => {
     </div>
   );
 };
+
+ExperienceInfo.propTypes  = {
+  handleNextStep: PropTypes.func.isRequired,
+  handlePrevStep: PropTypes.func.isRequired,
+  values: PropTypes.object.isRequired
+}
 
 export default ExperienceInfo;

@@ -1,8 +1,8 @@
 import "./App.css";
-import UserDetails from "./components/user-details/UserDetails";
+import UserDetailsForm from "./components/user-details/UserDetails";
 
 function App() {
-  return <UserDetails />;
+  return <UserDetailsForm />;
 }
 
 export default App;
